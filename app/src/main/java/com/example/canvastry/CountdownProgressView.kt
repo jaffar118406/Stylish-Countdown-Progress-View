@@ -9,10 +9,9 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
-import kotlin.math.min
 
 
-class CustomProgressBar: View {
+class CountdownProgressView: View {
     val TAG = this::class.java.canonicalName
 
     private var maxProgress = 100
