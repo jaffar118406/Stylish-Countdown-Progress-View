@@ -22,6 +22,7 @@ class CountdownProgressView: View {
     private var textPaint: Paint? = null
     private var textSize = 0f
     private var progressColor = 0
+    private var cornerRadius = 30f
 
     constructor(context: Context): super(context)
     constructor(context: Context, attrs: AttributeSet): super(context, attrs)
@@ -33,7 +34,7 @@ class CountdownProgressView: View {
 
         val width = width
         val height = height
-        val cornerRadius = 30f // Adjust corner radius as needed
+        cornerRadius = 30f // Adjust corner radius as needed
 
         // Define a rectangle for the progress bar bounds
         val rectF = RectF(20f, 20f, (width - 20).toFloat(), (height - 20).toFloat())
@@ -121,80 +122,6 @@ class CountdownProgressView: View {
             (height / 2 - (textPaint!!.descent() + textPaint!!.ascent()) / 2),
             textPaint!!
         )
-
-//        val width = width
-//        val height = height
-//        val cornerRadius = 30f // Adjust corner radius as needed
-//
-//        // Define a rectangle for the progress bar bounds
-//        val rectF = RectF(20f, 20f, (width - 20).toFloat(), (height - 20).toFloat())
-//
-//        // Draw background rectangle with rounded corners
-//        canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, backgroundPaint!!)
-//
-//        // Calculate the total length of the perimeter and the progress length
-//        val totalLength = 2 * (width - 40) + 2 * (height - 40) - 4 * cornerRadius
-//        val progressLength = totalLength * progress / maxProgress
-//
-//        // Create a path for the progress
-//        val path = Path()
-//        path.moveTo(20f + cornerRadius, 20f)
-//        var remainingLength = progressLength
-//
-//        // Function to draw lines and arcs
-//        fun addLineAndArc(lineLength: Float, x1: Float, y1: Float, x2: Float, y2: Float, arcRect: RectF?, startAngle: Float, sweepAngle: Float) {
-//            if (remainingLength >= lineLength) {
-//                path.lineTo(x2, y2)
-//                remainingLength -= lineLength
-//            } else if (remainingLength > 0) {
-//                val ratio = remainingLength / lineLength
-//                path.lineTo(x1 + (x2 - x1) * ratio, y1 + (y2 - y1) * ratio)
-//                remainingLength = 0f
-//            }
-//            if (arcRect != null && remainingLength > 0) {
-//                path.arcTo(arcRect, startAngle, sweepAngle)
-//                remainingLength -= cornerRadius
-//            }
-//        }
-//
-//        // Top side
-//        addLineAndArc(width - 40 - 2 * cornerRadius, 20f + cornerRadius, 20f, width - 20 - cornerRadius, 20f, null, 0f, 0f)
-//
-//        // Top-right corner
-//        addLineAndArc(cornerRadius, width - 20 - cornerRadius, 20f, width - 20f, 20f + cornerRadius,
-//            RectF((width - 40 - cornerRadius).toFloat(), 20f, (width - 20).toFloat(), (40 + cornerRadius).toFloat()),
-//            -90f, 90f)
-//
-//        // Right side
-//        addLineAndArc(height - 40 - 2 * cornerRadius, width - 20f, 20f + cornerRadius, width - 20f, height - 20 - cornerRadius, null, 0f, 0f)
-//
-//        // Bottom-right corner
-//        addLineAndArc(cornerRadius, width - 20f, height - 20 - cornerRadius, width - 20f, height - 20f,
-//            RectF((width - 40 - cornerRadius).toFloat(), (height - 40 - cornerRadius).toFloat(), (width - 20).toFloat(), (height - 20).toFloat()),
-//            0f, 90f)
-//
-//        // Bottom side
-//        addLineAndArc(width - 40 - 2 * cornerRadius, width - 20 - cornerRadius, height - 20f, 20f + cornerRadius, height - 20f, null, 0f, 0f)
-//
-//        // Bottom-left corner
-//        addLineAndArc(cornerRadius, 20f + cornerRadius, height - 20f, 20f, height - 20f,
-//            RectF(20f, (height - 40 - cornerRadius).toFloat(), (40 + cornerRadius).toFloat(), (height - 20).toFloat()),
-//            90f, 90f)
-//
-//        // Left side
-//        addLineAndArc(height - 40 - 2 * cornerRadius, 20f, height - 20 - cornerRadius, 20f, 20f + cornerRadius, null, 0f, 0f)
-//
-//        // Draw the progress path
-//        canvas.drawPath(path, progressPaint!!)
-//
-//        // Draw countdown text in the center
-//        val text = countdown.toString()
-//        canvas.drawText(
-//            text,
-//            (width / 2).toFloat(),
-//            (height / 2 - (textPaint!!.descent() + textPaint!!.ascent()) / 2),
-//            textPaint!!
-//        )
     }
 
     fun init() {
@@ -247,5 +174,9 @@ class CountdownProgressView: View {
 
     fun setProgressColor(color: Int) {
         this.progressColor = color
+    }
+
+    fun setRoundCornerRadius(cornerRadius: Float) {
+        this.cornerRadius = cornerRadius
     }
 }
