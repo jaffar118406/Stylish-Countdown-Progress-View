@@ -39,6 +39,19 @@ android {
     }
 }
 
+afterEvaluate {
+    publishing{
+        publications{
+            create<MavenPublication>("maven") {
+                from (components.findByName("release"))
+                groupId = "com.github.jaffar118406"
+                artifactId = "countdown-progress-view"
+                version = "0.1.0"
+            }
+        }
+    }
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
